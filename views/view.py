@@ -42,12 +42,19 @@ class viewInfo(Resource):
         except Exception as e:
             print("Could not insert the data due to error: ", e)
 
-    def dbFetch(self):            
-        query = "select * from admins"
-        ResultProxy = self.connection.execute(query)
-        ResultSet = ResultProxy.fetchall()
-        
-        return ResultSet
+    def dbFetch(self):  
+        try:          
+            query = "select BIN_TO_UUID(admin_id) as admin_id, first_name, last_name from admins"
+            ResultProxy = self.connection.execute(sql_text(query)).fetchone()
+            # ResultSet = ResultProxy.fetch()
+            res = dict(ResultProxy)
+            # for item in res.values():
+            #     print(item)
+            print(res.values())
+            return res
+
+        except Exception as e:
+            print("Encountered an error:", e)
 
 
 

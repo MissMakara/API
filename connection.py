@@ -1,13 +1,15 @@
 import sqlalchemy as alchemy
 
+from utils.utilsfile import ConfigsParser as parser
+
 class Db():
     def __init__(self):
-        self.dialect = "mysql"
-        self.username = "bella"
-        self.password = "admin123"
-        self.host = "localhost"
+        self.db_configs = parser.parse_configs('DATABASE')
+        self.username = self.db_configs['username']
+        self.password = self.db_configs['password']
+        self.host = self.db_configs['host']
         # self.port = 
-        self.database = "flaskdb"
+        self.database = self.db_configs['db_name']
 
         # dialect+driver://username:password@host:port/database
 

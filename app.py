@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_restful import Api, Resource
 
-from view import viewInfo
+from views.view import viewInfo
 from main import home
 from connection import Db
 
